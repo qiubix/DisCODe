@@ -227,17 +227,17 @@ def createComponent(cmp_name, dcl_name, dcl_path, dic):
 	
 		logging.debug("Component created.")
 	
-	except Exception, err:
+	except Exception as err:
 		if (tmp_dir != ""):
 			try:
 				shutil.rmtree(tmp_dir)
-			except Exception, err2:
+			except Exception as err2:
 				pass
 				
 		if (os.path.exists(dir)):
 			try:
 				shutil.rmtree(dir)
-			except Exception, err2:
+			except Exception as err2:
 				pass
 		
 		logging.exception("Can't create component [{}]".format(cmp_name))
