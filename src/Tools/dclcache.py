@@ -9,38 +9,38 @@ from ctypes import *
 
 def refreshDCLCache(dclname, dclpath, verbose):
   if verbose:
-    print "Refreshing cache for", dclname
+    print("Refreshing cache for", dclname)
   mappings = {}
   p = os.path.join(dclpath, "dist", "lib")
   if not os.path.exists(p):
     if verbose:
-      print "DCL", dclname, "empty. Skipping..."
+      print("DCL", dclname, "empty. Skipping...")
     return
   outfile = os.path.join(dclpath, "dist", "cache.txt")
   f = open(outfile, 'w')
   for libname in os.listdir(p):
     try:
       if verbose:
-        print "Trying ", libname
+        print("Trying ", libname)
       lib = CDLL(os.path.join(p, libname))
       if verbose:
-        print "Opened"
+        print("Opened")
     except Exception as e:
-      print "Can't open", dclname, ":", libname
-      print e
+      print("Can't open", dclname, ":", libname)
+      print(e)
       continue
       
     try:
       if verbose:
-        print "Calling method..."
+        print("Calling method...")
       lib.returnCName.restype = c_char_p
       cname = lib.returnCName()
       mappings[cname] = libname
       f.write(cname + "\t" + libname + "\n")
       if verbose:
-        print "\t", cname, "=>", libname
+        print("\t", cname, "=>", libname)
     except:
-      print "Can't read", libname, "name"
+      print("Can't read", libname, "name")
       continue
   
 #  print mappings
@@ -61,7 +61,7 @@ def main(argv):
     if args.DCL in dcls.keys():
       refreshDCLCache(args.DCL, dcls[args.DCL], args.verbose)
     else:
-      print "DCL [", args.DCL, "] not found!"
+      print("DCL [", args.DCL, "] not found!")
       exit(1)
 
 if __name__=="__main__":
