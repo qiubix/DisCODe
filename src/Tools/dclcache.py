@@ -36,11 +36,12 @@ def refreshDCLCache(dclname, dclpath, verbose):
       lib.returnCName.restype = c_char_p
       cname = lib.returnCName()
       mappings[cname] = libname
-      f.write(cname + "\t" + libname + "\n")
+      f.write(cname.decode() + "\t" + libname + "\n")
       if verbose:
-        print("\t", cname, "=>", libname)
-    except:
+        print("\t", cname.decode(), "=>", libname)
+    except Exception as e:
       print("Can't read", libname, "name")
+      print(e)
       continue
   
 #  print mappings
