@@ -14,4 +14,8 @@ addons:
       - libeigen3-dev
       - libflann-dev
 
-script: cmake . && make
+before_script:
+  - pwd
+  - mkdir build && cd build
+
+script: cmake .. && make
