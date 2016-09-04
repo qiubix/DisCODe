@@ -1,6 +1,8 @@
 DisCODe - Distributed Component Oriented Data Processing 
 ========================================================
 
+[![Build Status](https://travis-ci.org/qiubix/DisCODe.svg?branch=master)](https://travis-ci.org/qiubix/DisCODe)
+
 Introduction
 ------------
 
